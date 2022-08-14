@@ -13,9 +13,12 @@ class Snap(dotbot.Plugin):
                 directive)
         
         success = True
-        classic = False
+        defaults = self._context.defaults().get(self._directive, {})
 
         for app, options in data.items():
+
+            classic = defaults.get("classic", False)
+
             if isinstance(options, dict):
                 classic = options.get("classic", classic)
             

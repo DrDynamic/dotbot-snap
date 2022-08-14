@@ -37,6 +37,9 @@ git submodule add https://github.com/DrDynamic/dotbot-snap.git
 
 ### Example config
 ```yaml
+- defaults:
+    snap:
+      classic: false # default
 ...
 - snap:
     - bpytop
