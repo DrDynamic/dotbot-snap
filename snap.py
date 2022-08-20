@@ -13,11 +13,23 @@ class Snap(dotbot.Plugin):
                 directive)
         
         success = True
+        defaults = self._context.defaults().get(self._directive, {})
 
-        for app in data:
+        for app, options in data.items():
+
+            classic = defaults.get("classic", False)
+
+            if isinstance(options, dict):
+                classic = options.get("classic", classic)
+            
             try:
+                command = ['snap install']
+                if classic:
+                    command.append("--classic")
+                command.append(app)
+
                 subprocess.run(
-                        ['snap install ' + app], 
+                        [' '.join(command)], 
                         shell=True, 
                         check=True)
             except subprocess.CalledProcessError:

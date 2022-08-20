@@ -24,19 +24,29 @@ git submodule add https://github.com/DrDynamic/dotbot-snap.git
 - snap: 
     - app 1
     - app 2
-    - app 3
+    - app 3:
+        classic: true
     ...
 ```
+
+| Parameter | Explanation |
+| --- | --- |
+| `classic` | Installs snap in classic mode, with `--classic` flag. Required for some snaps published using classic confinement, which would otherwise throw an error. (default: false) |
 
 ## Usage
 
 ### Example config
 ```yaml
+- defaults:
+    snap:
+      classic: false # default
 ...
 - snap:
     - bpytop
     - chromium
     - mailspring
+    - node:
+        classic: true
     ...
 ...
 ```
