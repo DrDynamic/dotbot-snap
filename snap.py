@@ -1,13 +1,14 @@
 import subprocess, dotbot
+from typing import List, Dict
 
 class Snap(dotbot.Plugin):
     _directive = 'snap'
 
 
-    def can_handle(self, directive):
+    def can_handle(self, directive: str):
         return self._directive == directive
 
-    def handle(self, directive, data):
+    def handle(self, directive: str , data: List):
         if directive != self._directive:
             raise ValueError('snap cannot handle directive %s' %
                 directive)
