@@ -15,13 +15,17 @@ class Snap(dotbot.Plugin):
         
         success = True
         defaults = self._context.defaults().get(self._directive, {})
-
-        for app, options in data.items():
+        for item in data:
 
             classic = defaults.get("classic", False)
+            app = None
 
-            if isinstance(options, dict):
-                classic = options.get("classic", classic)
+            if isinstance(item, Dict):
+                app, options = list(item.items())[0]
+                if options is not None:
+                    classic = options[0].get("classic", classic)
+            else:
+                app = item
             
             try:
                 command = ['snap install']
