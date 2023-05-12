@@ -1,26 +1,31 @@
 import subprocess, dotbot
+from typing import List, Dict
 
 class Snap(dotbot.Plugin):
     _directive = 'snap'
 
 
-    def can_handle(self, directive):
+    def can_handle(self, directive: str):
         return self._directive == directive
 
-    def handle(self, directive, data):
+    def handle(self, directive: str , data: List):
         if directive != self._directive:
             raise ValueError('snap cannot handle directive %s' %
                 directive)
         
         success = True
         defaults = self._context.defaults().get(self._directive, {})
-
-        for app, options in data.items():
+        for item in data:
 
             classic = defaults.get("classic", False)
+            app = None
 
-            if isinstance(options, dict):
-                classic = options.get("classic", classic)
+            if isinstance(item, Dict):
+                app, options = list(item.items())[0]
+                if options is not None:
+                    classic = options[0].get("classic", classic)
+            else:
+                app = item
             
             try:
                 command = ['snap install']
