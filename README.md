@@ -32,6 +32,7 @@ git submodule add https://github.com/DrDynamic/dotbot-snap.git
 | Parameter | Explanation |
 | --- | --- |
 | `classic` | Installs snap in classic mode, with `--classic` flag. Required for some snaps published using classic confinement, which would otherwise throw an error. (default: false) |
+| `channel` | Installs snap with the specified channel instead of `latest/stable`. Useful for pinning versions or tracking alpha, beta, or edge releases. |
 
 ## Usage
 
