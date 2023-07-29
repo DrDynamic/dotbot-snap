@@ -22,19 +22,25 @@ class Snap(dotbot.Plugin):
 
         for item in data:
             classic = defaults.get("classic", False)
+            channel = defaults.get("channel", "latest/stable")
             app = None
 
             if isinstance(item, Dict):
                 app, options = list(item.items())[0]
                 if options is not None:
                     classic = options.get("classic", classic)
+                    channel = options.get("channel", channel)
             else:
                 app = item
 
             try:
                 command = ['snap install']
+
                 if classic:
                     command.append("--classic")
+                if channel:
+                    command.append("--channel='%s'" % channel)
+
                 command.append(app)
                 self._log.debug('Using command: %s' % command)
 

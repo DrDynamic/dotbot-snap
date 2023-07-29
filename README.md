@@ -39,7 +39,8 @@ git submodule add https://github.com/DrDynamic/dotbot-snap.git
 ```yaml
 - defaults:
     snap:
-      classic: false # default
+      classic: false          # default
+      channel: latest/stable  # default
 ...
 - snap:
     - bpytop
@@ -47,6 +48,8 @@ git submodule add https://github.com/DrDynamic/dotbot-snap.git
     - mailspring
     - node:
         classic: true
+    - juju:
+        channel: 2.9/stable
     ...
 ...
 ```
