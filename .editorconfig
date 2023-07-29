@@ -17,3 +17,7 @@ trim_trailing_whitespace = false
 max_line_length = 79
 indent_style = space
 indent_size = 4
+
+[Makefile]
+indent_style = tab
+indent_size = unset # use the editor's default tab-width
